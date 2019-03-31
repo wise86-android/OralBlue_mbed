@@ -1,22 +1,34 @@
+//Copyright (c) 2019, Giovanni Visentini
+//SPDX-License-Identifier: Apache-2.0
 //
-// Created by wise on 3/30/19.
+//Licensed under the Apache License, Version 2.0 (the "License");
+//you may not use this file except in compliance with the License.
 //
+//You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+//
+//Unless required by applicable law or agreed to in writing, software
+//distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+//either express or implied.
+//
+//See the License for the specific language governing permissions and limitations under the License.
 
-#ifndef TESTBLE2_ORALBLUEMANAGER_H
-#define TESTBLE2_ORALBLUEMANAGER_H
+
+#ifndef ORALBLUE_ORALBLUEMANAGER_H
+#define ORALBLUE_ORALBLUEMANAGER_H
 
 #include <cmath>
 #include <array>
 #include <cstdint>
-#include "OralBlue.h"
+
 #include "platform/mbed_error.h"
 #include "platform/mbed_debug.h"
 #include "gap/AdvertisingDataParser.h"
 #include "gap/Gap.h"
 #include "ble/BLE.h"
-#include <mbed.h>
-#include <events/mbed_events.h>
+#include "mbed.h"
+#include "events/mbed_events.h"
 
+#include "OralBlue.h"
 
 template <class LED_T,std::size_t N>
 struct OralBlueManager : public Gap::EventHandler,private NonCopyable<OralBlueManager<LED_T,N>> {
@@ -86,4 +98,4 @@ private:
     events::EventQueue event_queue;
 };
 
-#endif //TESTBLE2_ORALBLUEMANAGER_H
+#endif //ORALBLUE_ORALBLUEMANAGER_H
