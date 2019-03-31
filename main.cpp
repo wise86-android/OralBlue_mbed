@@ -15,10 +15,10 @@
 #include "mbed.h"
 #include "ble/BLE.h"
 
-#include "PinConfiguration.h"
-#include "LedManager.h"
-#include "OralBlue.h"
-#include "OralBlueManager.h"
+#include "src/PinConfiguration.h"
+#include "src/LedManager.h"
+#include "src/OralBlue.h"
+#include "src/OralBlueManager.h"
 
 class  PWMLed : public LedManager::Led<PWMLed>{
 
