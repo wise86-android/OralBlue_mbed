@@ -16,6 +16,7 @@
 #include "ble/BLE.h"
 #include "TextLCD.h"
 
+#include "src/LCDManagerTextLCD.h"
 #include "src/PinConfiguration.h"
 #include "src/LedManager.h"
 #include "src/OralBlue.h"
@@ -43,12 +44,12 @@ int main(){
     LedManager::ProgressManager ledManager{leds};
 
     TextLCD lcd(Configuration::LCD_RS, Configuration::LCD_ENABLE,
-            Configuration::LCD_DATA_4, Configuration::LCD_DATA_5, Configuration::LCD_DATA_6, Configuration::LCD_DATA_7);
+            Configuration::LCD_DATA_4, Configuration::LCD_DATA_5,
+            Configuration::LCD_DATA_6, Configuration::LCD_DATA_7);
     debug("LCD Test. Columns=%d, Rows=%d\n\r", lcd.columns(), lcd.rows());
-    lcd.printf("ciao3");
-
+    LCDManagerTextLCD managerLcd(lcd);
     BLE &ble = BLE::Instance();
-    OralBlueManager oralBlueManager(ble, ledManager);
+    OralBlueManager oralBlueManager(ble, ledManager,managerLcd);
     oralBlueManager.start();
     return 0;
 }

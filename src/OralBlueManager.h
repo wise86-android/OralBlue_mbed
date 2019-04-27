@@ -28,15 +28,17 @@
 #include "mbed.h"
 #include "events/mbed_events.h"
 
+#include "LCDManagerTextLCD.h"
 #include "OralBlue.h"
 
 template <class LED_T,std::size_t N>
 struct OralBlueManager : public Gap::EventHandler,private NonCopyable<OralBlueManager<LED_T,N>> {
 
-    explicit OralBlueManager(BLE &ble, LedManager::ProgressManager<LED_T, N> &manager) :
+    explicit OralBlueManager(BLE &ble, LedManager::ProgressManager<LED_T, N> &manager,LCDManagerTextLCD &lcdManager) :
             _ble(ble),
             _gap(ble.gap()),
-            _ledManager(manager){
+            _ledManager(manager),
+            _display(lcdManager){
         _ble.onEventsToProcess(BLE::OnEventsToProcessCallback_t(this,&OralBlueManager::schedule_ble_events));
         _ble.init(this,&OralBlueManager::on_init_complete);
         _gap.setEventHandler(this);
@@ -64,7 +66,9 @@ struct OralBlueManager : public Gap::EventHandler,private NonCopyable<OralBlueMa
         if(!info.has_value())
             return;
         auto sectorSeconds = info->brushingTime.count() % 30;
-        _ledManager.setProgress(uint8_t(ceil(sectorSeconds * 10.0f / 3.0f)));
+        auto progressPercentage = uint8_t(ceil(sectorSeconds * 10.0f / 3.0f)) ;
+        _ledManager.setProgress(progressPercentage);
+        _display.setProgress(info->sector,progressPercentage);
         debug("time: %lld\n",info->brushingTime.count());
     }
 
@@ -95,6 +99,7 @@ private:
     BLE &_ble;
     Gap &_gap;
     LedManager::ProgressManager<LED_T, N> _ledManager;
+    LCDManagerTextLCD& _display;
     events::EventQueue event_queue;
 };
 
