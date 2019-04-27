@@ -16,7 +16,7 @@ You can change the pins changing the PinConfiguration.h file, but note that the 
 
 
 ## How to compile
-This project use some c++17 feature,becouse I started in 2019.
+This project use some c++17 feature,because I started in 2019.
 For this reason you have to use a custom build profile, that enable c++17 for GCC Arm.
 
 To do you have to run:

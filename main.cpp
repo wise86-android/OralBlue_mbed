@@ -14,6 +14,7 @@
 
 #include "mbed.h"
 #include "ble/BLE.h"
+#include "TextLCD.h"
 
 #include "src/PinConfiguration.h"
 #include "src/LedManager.h"
@@ -40,6 +41,10 @@ int main(){
                      PWMLed(Configuration::YELLOW_LED),
                      PWMLed(Configuration::GREEN_LED)};
     LedManager::ProgressManager ledManager{leds};
+
+    TextLCD lcd(D4, D6, A2, A3, A4, A5);
+    debug("LCD Test. Columns=%d, Rows=%d\n\r", lcd.columns(), lcd.rows());
+    lcd.printf("ciao3");
 
     BLE &ble = BLE::Instance();
     OralBlueManager oralBlueManager(ble, ledManager);
