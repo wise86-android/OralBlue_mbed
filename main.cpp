@@ -47,9 +47,12 @@ int main(){
             Configuration::LCD_DATA_4, Configuration::LCD_DATA_5,
             Configuration::LCD_DATA_6, Configuration::LCD_DATA_7);
     debug("LCD Test. Columns=%d, Rows=%d\n\r", lcd.columns(), lcd.rows());
+
+
     LCDManagerTextLCD managerLcd(lcd);
     BLE &ble = BLE::Instance();
     OralBlueManager oralBlueManager(ble, ledManager,managerLcd);
     oralBlueManager.start();
+
     return 0;
 }
