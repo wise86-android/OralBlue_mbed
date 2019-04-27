@@ -50,6 +50,7 @@ LCDManagerTextLCD::LCDManagerTextLCD(TextLCD& lcd):mLcd(lcd){
 }
 
 void LCDManagerTextLCD::setProgress(const OralBlue::Sector sector,const uint8_t percentage){
+    mLcd.cls();
     printZoneName(sector);
     printZoneProgress(sector);
     printPercentage(percentage);
