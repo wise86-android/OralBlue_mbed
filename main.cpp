@@ -21,7 +21,7 @@
 #include "src/LedManager.h"
 #include "src/OralBlue.h"
 #include "src/OralBlueManager.h"
-#include "src/TextLCDCustonChars.h"
+
 class  PWMLed : public LedManager::Led<PWMLed>{
 
 public:
