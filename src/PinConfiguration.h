@@ -21,6 +21,13 @@ namespace Configuration{
     constexpr PinName RED_LED = PB_8;
     constexpr PinName YELLOW_LED = PB_9;
     constexpr PinName GREEN_LED = PA_10;
+
+    constexpr PinName LCD_RS = D4;
+    constexpr PinName LCD_ENABLE = D6;
+    constexpr PinName LCD_DATA_4 = A2;
+    constexpr PinName LCD_DATA_5 = A3;
+    constexpr PinName LCD_DATA_6 = A4;
+    constexpr PinName LCD_DATA_7 = A5;
 }
 
 #endif //ORALBLUE_PINCONFIGURATION_H

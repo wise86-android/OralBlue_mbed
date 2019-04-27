@@ -42,7 +42,8 @@ int main(){
                      PWMLed(Configuration::GREEN_LED)};
     LedManager::ProgressManager ledManager{leds};
 
-    TextLCD lcd(D4, D6, A2, A3, A4, A5);
+    TextLCD lcd(Configuration::LCD_RS, Configuration::LCD_ENABLE,
+            Configuration::LCD_DATA_4, Configuration::LCD_DATA_5, Configuration::LCD_DATA_6, Configuration::LCD_DATA_7);
     debug("LCD Test. Columns=%d, Rows=%d\n\r", lcd.columns(), lcd.rows());
     lcd.printf("ciao3");
 
